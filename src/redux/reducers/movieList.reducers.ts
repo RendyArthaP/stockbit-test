@@ -22,7 +22,6 @@ const moviesReducers = (state = initialState, action: MoviesActionType): Initial
         loading: true
       }
     case MovieList.MOVIE_SUCCESS:
-      console.log('action', action.payload)
       return {
         loading: false,
         movies: [

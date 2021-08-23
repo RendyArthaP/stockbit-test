@@ -12,7 +12,7 @@ const Home = () => {
   const movieList = useSelector((state: RootStore) => state.moviesReducers.movies)
   const [titleMovie, setTitleMovie] = useState<string>("")
   const [pagePerTitle] = useState<number>(1)
-
+  
   useEffect(() => {
     dispatch(getMovieList(titleMovie, pagePerTitle))
   },[dispatch, titleMovie, pagePerTitle])
@@ -33,16 +33,18 @@ const Home = () => {
           />
           {titleMovie === "" 
             ? 
-              <h1 className="text-center font-bold text-2xl my-40">
+              <h1 className="text-center font-bold text-2xl my-40 h-screen">
                 You need to search first
               </h1>
             :
-              movieList.slice(0,5).map((movie: ListMovies , i: number) => (
-                <CardMovies 
-                  movie = {movie}
-                  key = {i}
-                />
-              ))
+              <div className="grid grid-cols-1 gap-0 md:grid-cols-3 h-screen">
+                {movieList.slice(0,5).map((movie: ListMovies , i: number) => (
+                  <CardMovies 
+                    movie = {movie}
+                    key = {i}
+                  />
+                ))}
+              </div>
           }
         </main>
       </Layout>
