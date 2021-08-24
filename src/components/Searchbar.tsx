@@ -18,15 +18,19 @@ const Searchbar = ({ titleMovie, setTitleMovie, movieList }: Props) => {
       <div>
         {titleMovie.length !== 0 && (
           <div className="absolute m-3 overflow-hidden overflow-y-scroll h-48 block z-50 bg-white w-9/12 border">
-            {movieList.sort().map((movie: ListMovies, index: number) => (
-              <Link 
-                to={`${movie.Title}`} 
-                key={index}
-              >
+            {movieList.filter((movie: ListMovies) => {
+              if(titleMovie === "") {
+                return movie;
+              } else if(
+                movie.Title.toLowerCase().includes(titleMovie.toLowerCase())
+              ) {
+                return movie
+              }
+                return null;
+            }).sort().map((movie: ListMovies, index: number) => (
+              <Link to={`/${movie.Title}`} key={index}>
                 <div className="p-2 hover:bg-green-500 hover:text-white">
-                  <h1>
-                    {movie.Title}
-                  </h1>
+                  <h1>{movie.Title}</h1>
                 </div>
               </Link>
             ))}
