@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useRef, useState} from 'react'
 import Layout from '../components/layout'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,12 +9,35 @@ import CardMovies from '../components/CardMovies'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const anchor = useRef<any>(null)
   const movieList = useSelector((state: RootStore) => state.moviesReducers.movies)
   const [titleMovie, setTitleMovie] = useState<string>("")
-  const [pagePerTitle] = useState<number>(1)
+  const [fetchAllPerPage, setFetchAllPerPage] = useState<number>(5)
+  const [pagePerTitle, setPagePerTitle] = useState<number>(1)
+
+  // const fetchData = () => {
+  //   if(fetchAllPerPage >= 10) {
+  //     setFetchAllPerPage(0)
+  //     setPagePerTitle(prev => prev + 1)
+  //   }
+  //   setFetchAllPerPage(prev => prev + 5)
+  // }
+
+  console.log(movieList);
 
   useEffect(() => {
     dispatch(getMovieList(titleMovie, pagePerTitle))
+
+    // let options = {
+    //   root: document.querySelector('#scrollArea'),
+    //   rootMargin: '0px',
+    //   threshold: 1.0
+    // }
+
+    // let observer = new IntersectionObserver(fetchData, options);
+    // if (anchor && anchor.current) {
+    //   observer.observe(anchor.current)
+    // }
   },[dispatch, titleMovie, pagePerTitle])
 
   return (
@@ -38,12 +61,22 @@ const Home = () => {
               </h1>
             :
               <div className="grid grid-cols-1 gap-0 md:grid-cols-3">
-                {movieList.slice(0,5).map((movie: ListMovies , i: number) => (
-                  <CardMovies 
-                    movie = {movie}
-                    key = {i}
-                  />
+                {movieList.filter((movie: ListMovies) => {
+                  if(titleMovie === "") {
+                    return movie;
+                  } else if(
+                    movie.Title.toLowerCase().includes(titleMovie.toLowerCase())
+                  ) {
+                    return movie;
+                  } 
+                    return null;
+                }).slice(0, fetchAllPerPage).map((movie: ListMovies, i: number) => (
+                    <CardMovies 
+                      movie = {movie}
+                      key = {i}
+                    />
                 ))}
+                <div ref={anchor}/>
               </div>
           }
         </main>

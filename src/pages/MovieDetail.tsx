@@ -37,7 +37,7 @@ const MovieDetail = () => {
                   alt={detailMovie?.Title}
                   className="object-cover rounded-xl w-80 mx-auto h-96"
                 />
-                <div className="flex flex-col md:ml-4 w-1/2">
+                <div className="flex flex-col md:ml-4 md:w-1/2">
                   <h1 className="font-bold text-2xl my-1">
                     {detailMovie?.Title}
                   </h1>
@@ -52,6 +52,19 @@ const MovieDetail = () => {
                       Directors:
                     </h1>
                     <span className="font-normal md:mx-1">{detailMovie?.Director}</span>
+                  </div>
+                  <div className="flex flex-wrap my-1">
+                    <h1 className="font-bold text-base">
+                      Ratings:
+                    </h1>
+                    <span className="font-normal md:mx-1">
+                      {detailMovie?.Ratings.length === 0 
+                        ? 
+                          "N/A" 
+                        : 
+                          detailMovie?.Ratings[0].Value
+                      }
+                    </span>
                   </div>
                   <div className="flex my-1">
                     <h1 className="font-bold text-base">
