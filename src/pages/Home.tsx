@@ -15,29 +15,18 @@ const Home = () => {
   const [titleMovie, setTitleMovie] = useState<string>("")
   const [fetchAllPerPage, setFetchAllPerPage] = useState<number>(5)
   const [pagePerTitle, setPagePerTitle] = useState<number>(1)
-  
-
-  // const fetchData = () => {
-  //   // if(fetchAllPerPage >= 10) {
-  //   //   setFetchAllPerPage(0)
-  //   //   setPagePerTitle(prev => prev + 1)
-  //   // }
-  //   setFetchAllPerPage(prev => prev + 5)
-  // }
 
   useEffect(() => {
     dispatch(getMovieList(titleMovie, pagePerTitle))
 
-    // let options = {
-    //   root: document.querySelector('#scrollArea'),
-    //   rootMargin: '0px',
-    //   threshold: 1.0
-    // }
-
-    // let observer = new IntersectionObserver(fetchData, options);
-    // if (anchor && anchor.current) {
-    //   observer.observe(anchor.current)
-    // }
+    window.addEventListener('scroll', () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      if(scrolled === scrollable) {
+        setFetchAllPerPage(prev => prev + 5)
+        setPagePerTitle(prev => prev + 1)
+      }
+    })
     
   },[dispatch, titleMovie, pagePerTitle])
 
