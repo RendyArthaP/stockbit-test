@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState} from 'react'
-import Layout from '../components/layout'
-import { Helmet } from 'react-helmet'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootStore } from '../redux/store'
-import { getMovieList } from '../redux/actions/movieList.actions'
-import { ListMovies } from '../redux/typesActions/movieList.types'
-import CardMovies from '../components/CardMovies'
-import Searchbar from '../components/Searchbar'
+import { useEffect, useRef, useState} from 'react';
+import Layout from '../components/layout';
+import { Helmet } from 'react-helmet';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootStore } from '../redux/store';
+import { getMovieList } from '../redux/actions/movieList.actions';
+import { ListMovies } from '../redux/typesActions/movieList.types';
+import CardMovies from '../components/CardMovies';
+import Searchbar from '../components/Searchbar';
 
 const Home = () => {
   const dispatch = useDispatch()

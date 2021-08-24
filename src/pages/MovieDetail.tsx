@@ -1,21 +1,20 @@
-import { useEffect } from 'react'
-import { Helmet } from 'react-helmet'
-import Layout from '../components/layout'
-import { getDetailMovies } from '../redux/actions/movieDetail.actions'
+import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import Layout from '../components/layout';
+import { getDetailMovies } from '../redux/actions/movieDetail.actions';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore } from '../redux/store';
 import { Link } from 'react-router-dom';
 
 const MovieDetail = () => {
-  const dispatch = useDispatch()
-  const { title }: any = useParams()
-  const detailMovie = useSelector((state: RootStore) => state.moviesDetailReducers.movieDetails)
-  
-  console.log(detailMovie);
+  const dispatch = useDispatch();
+  const { title }: any = useParams();
+  const detailMovie = useSelector((state: RootStore) => state.moviesDetailReducers.movieDetails);
+
   useEffect(() => {
-    dispatch(getDetailMovies(title))
-  }, [dispatch, title])
+    dispatch(getDetailMovies(title));
+  }, [dispatch, title]);
 
   return (
     <>

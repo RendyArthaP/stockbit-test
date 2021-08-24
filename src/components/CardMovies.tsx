@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ListMovies } from '../redux/typesActions/movieList.types'
-import Poster from './modal/Poster'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ListMovies } from '../redux/typesActions/movieList.types';
+import Poster from './modal/Poster';
 
 interface Props {
   movie: ListMovies

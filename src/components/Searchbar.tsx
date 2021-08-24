@@ -1,5 +1,5 @@
-import { ListMovies } from "../redux/typesActions/movieList.types"
-import { Link } from "react-router-dom";
+import { ListMovies } from '../redux/typesActions/movieList.types';
+import { Link } from 'react-router-dom';
 
 interface Props {
   titleMovie: string;
@@ -14,10 +14,12 @@ const Searchbar = ({ titleMovie, setTitleMovie, movieList }: Props) => {
         className="border border-green-400 rounded-xl w-full py-2 px-4 focus:outline-none text-green-500"
         value={titleMovie}
         onChange={(e) => setTitleMovie(e.target.value)}
+        data-testid="searchBar"
+        placeholder="Search"
       />
       <div>
         {titleMovie.length !== 0 && (
-          <div className="absolute m-3 overflow-hidden overflow-y-scroll h-48 block z-50 bg-white w-9/12 border">
+          <div className="mt-3 mx-1.5 overflow-hidden overflow-y-scroll h-48 block z-50 bg-white max-w-6xl border">
             {movieList.filter((movie: ListMovies) => {
               if(titleMovie === "") {
                 return movie;
