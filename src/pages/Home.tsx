@@ -6,6 +6,7 @@ import { RootStore } from '../redux/store'
 import { getMovieList } from '../redux/actions/movieList.actions'
 import { ListMovies } from '../redux/typesActions/movieList.types'
 import CardMovies from '../components/CardMovies'
+import Searchbar from '../components/Searchbar'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -14,16 +15,15 @@ const Home = () => {
   const [titleMovie, setTitleMovie] = useState<string>("")
   const [fetchAllPerPage, setFetchAllPerPage] = useState<number>(5)
   const [pagePerTitle, setPagePerTitle] = useState<number>(1)
+  
 
   // const fetchData = () => {
-  //   if(fetchAllPerPage >= 10) {
-  //     setFetchAllPerPage(0)
-  //     setPagePerTitle(prev => prev + 1)
-  //   }
+  //   // if(fetchAllPerPage >= 10) {
+  //   //   setFetchAllPerPage(0)
+  //   //   setPagePerTitle(prev => prev + 1)
+  //   // }
   //   setFetchAllPerPage(prev => prev + 5)
   // }
-
-  console.log(movieList);
 
   useEffect(() => {
     dispatch(getMovieList(titleMovie, pagePerTitle))
@@ -38,6 +38,7 @@ const Home = () => {
     // if (anchor && anchor.current) {
     //   observer.observe(anchor.current)
     // }
+    
   },[dispatch, titleMovie, pagePerTitle])
 
   return (
@@ -49,12 +50,12 @@ const Home = () => {
       
       <Layout>
         <main className="py-16 px-4">
-          <input 
-            className="border border-green-400 rounded-xl w-full py-2 px-4 focus:outline-none text-green-500"
-            value={titleMovie}
-            onChange={(e) => setTitleMovie(e.target.value)}
+          <Searchbar 
+            titleMovie = {titleMovie}
+            setTitleMovie = {setTitleMovie}
+            movieList = {movieList}
           />
-          {movieList.length === 0
+          {titleMovie.length === 0
             ? 
               <h1 className="text-center font-bold text-2xl my-40 h-screen">
                 You need to search first
