@@ -9,12 +9,11 @@ interface Props {
 
 const Searchbar = ({ titleMovie, setTitleMovie, movieList }: Props) => {
   return (
-    <div>
+    <div data-testid="searchBar">
       <input 
         className="border border-green-400 rounded-xl w-full py-2 px-4 focus:outline-none text-green-500"
         value={titleMovie}
         onChange={(e) => setTitleMovie(e.target.value)}
-        data-testid="searchBar"
         placeholder="Search"
       />
       <div>

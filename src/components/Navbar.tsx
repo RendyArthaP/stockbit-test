@@ -1,15 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { BrowserRouter, Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div className="bg-green-500 h-16">
+    <div 
+      className="bg-green-500 h-16" 
+      data-testid="navbar"
+    >
       <main className="flex flex-row justify-between max-w-7xl mx-auto p-4">
-        <Link to="/">
-          <h1 className="text-white font-bold text-2xl">
-            OMDb
-          </h1>
-        </Link>
+        <BrowserRouter>
+          <Link to="/">
+            <h1 className="text-white font-bold text-2xl">
+              OMDb
+            </h1>
+          </Link>
+        </BrowserRouter>
         <main className="flex">
           <h2 className="text-white font-bold text-xl mx-4">
             Movies
